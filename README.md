@@ -5,7 +5,7 @@ A simple yet powerful task ticketing system built using ASP.NET Core MVC. This a
 ## 📸 Preview
 
 ```html
-<!-- Kanban Board Sample View -->
+
 <div class="kanban-board">
   <div class="kanban-column">
     <h3>To Do</h3>
@@ -20,3 +20,30 @@ A simple yet powerful task ticketing system built using ASP.NET Core MVC. This a
     <div class="task-card">Setup Database</div>
   </div>
 </div>
+
+🧱 Project Structure
+Models: Define task entities and user roles.
+
+Views: Razor pages for displaying tasks and Kanban board.
+
+Controllers: Handle task creation, updates, and status changes.
+
+Data: Entity Framework Core for database operations.
+
+🛠️ Technologies Used
+ASP.NET Core MVC
+
+Entity Framework Core
+
+HTML/CSS/JavaScript
+
+SQL Server
+
+📌 Features
+Task creation and assignment
+
+Kanban board visualization
+
+Role-based access control
+
+Responsive UI
