@@ -17,7 +17,7 @@ ASP.NET Core MVC
 
 Entity Framework Core
 
-HTML/CSS/JavaScript
+HTML/CSS/C#/JavaScript
 
 SQL Server
 
