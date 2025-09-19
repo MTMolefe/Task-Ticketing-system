@@ -1,0 +1,162 @@
+﻿@model KanbanViewModel
+
+@{
+    ViewData["Title"] = "Kanban Board";
+}
+
+<style>
+    body {
+        font-family: sans-serif;
+    }
+    .kanban-board {
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+        overflow-x: auto;
+    }
+    .kanban-column {
+        flex: 0 0 300px;
+        background-color: #f4f5f7;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+    .kanban-column h2 {
+        text-align: center;
+        margin-bottom: 15px;
+        color: #5e6c84;
+    }
+    .kanban-card {
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        box-shadow: 0 1px 0 rgba(9,30,66,.25);
+    }
+    .kanban-card h4 {
+        margin: 0 0 10px 0;
+        font-size: 16px;
+    }
+    .kanban-card p {
+        margin: 0;
+        font-size: 12px;
+        color: #6b778c;
+    }
+    .card-footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+    .card-footer span {
+        font-size: 10px;
+        color: #6b778c;
+    }
+    .btn-link {
+        font-size: 10px;
+    }
+</style>
+
+<h1>Kanban Board</h1>
+<p><a asp-action="Create">Create New Ticket</a></p>
+
+<div class="kanban-board">
+    <div class="kanban-column">
+        <h2>Open</h2>
+        @foreach (var ticket in Model.OpenTickets)
+        {
+            <div class="kanban-card">
+                <h4>@ticket.Title</h4>
+                <p>@ticket.Description</p>
+                <div class="card-footer">
+                    <span>Priority: @ticket.Priority</span>
+                    <span>Assigned: @(ticket.AssignedToUser?.FullName ?? "Unassigned")</span>
+                </div>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@ticket.Id" class="btn-link">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@ticket.Id" class="btn-link">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@ticket.Id" class="btn-link">Delete</a>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="kanban-column">
+        <h2>In Progress</h2>
+        @foreach (var ticket in Model.InProgressTickets)
+        {
+            <div class="kanban-card">
+                <h4>@ticket.Title</h4>
+                <p>@ticket.Description</p>
+                <div class="card-footer">
+                    <span>Priority: @ticket.Priority</span>
+                    <span>Assigned: @(ticket.AssignedToUser?.FullName ?? "Unassigned")</span>
+                </div>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@ticket.Id" class="btn-link">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@ticket.Id" class="btn-link">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@ticket.Id" class="btn-link">Delete</a>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="kanban-column">
+        <h2>Resolved</h2>
+        @foreach (var ticket in Model.ResolvedTickets)
+        {
+            <div class="kanban-card">
+                <h4>@ticket.Title</h4>
+                <p>@ticket.Description</p>
+                <div class="card-footer">
+                    <span>Priority: @ticket.Priority</span>
+                    <span>Assigned: @(ticket.AssignedToUser?.FullName ?? "Unassigned")</span>
+                </div>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@ticket.Id" class="btn-link">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@ticket.Id" class="btn-link">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@ticket.Id" class="btn-link">Delete</a>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="kanban-column">
+        <h2>Blocker</h2>
+        @foreach (var ticket in Model.BlockerTickets)
+        {
+            <div class="kanban-card">
+                <h4>@ticket.Title</h4>
+                <p>@ticket.Description</p>
+                <div class="card-footer">
+                    <span>Priority: @ticket.Priority</span>
+                    <span>Assigned: @(ticket.AssignedToUser?.FullName ?? "Unassigned")</span>
+                </div>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@ticket.Id" class="btn-link">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@ticket.Id" class="btn-link">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@ticket.Id" class="btn-link">Delete</a>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="kanban-column">
+        <h2>Closed</h2>
+        @foreach (var ticket in Model.ClosedTickets)
+        {
+            <div class="kanban-card">
+                <h4>@ticket.Title</h4>
+                <p>@ticket.Description</p>
+                <div class="card-footer">
+                    <span>Priority: @ticket.Priority</span>
+                    <span>Assigned: @(ticket.AssignedToUser?.FullName ?? "Unassigned")</span>
+                </div>
+                <div>
+                    <a asp-action="Edit" asp-route-id="@ticket.Id" class="btn-link">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@ticket.Id" class="btn-link">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@ticket.Id" class="btn-link">Delete</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
