@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Ticket>
+
+@{
+    // Define a dictionary for easy mapping of priority to CSS class
+    var priorityClasses = new Dictionary<string, string>
+    {
+        { "Low", "priority-low" },
+        { "Medium", "priority-medium" },
+        { "High", "priority-high" },
+        { "Critical", "priority-critical" }
+    };
+
+    // Get the title from ViewData or a parameter passed to the template
+    var title = ViewData["Title"]?.ToString() ?? "Unknown";
+}
+
+<div class="kanban-column">
+    <h2 class="kanban-column-header">@title</h2>
+    @foreach (var ticket in Model)
+    {
+        <div class="kanban-card @(priorityClasses.ContainsKey(ticket.Priority) ? priorityClasses[ticket.Priority] : "")">
+            <h4>@ticket.Title</h4>
+            <p>@ticket.Description</p>
+            <div class="card-meta">
+                <span>Assigned: @(ticket.AssignedToUser?.FullName ?? "Unassigned")</span>
+                <span>Priority: @ticket.Priority</span>
+            </div>
+            <div class="card-actions">
+                <a asp-action="Edit" asp-route-id="@ticket.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@ticket.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@ticket.Id">Delete</a>
+            </div>
+        </div>
+    }
+</div>
